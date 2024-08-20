@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/widgets/button.dart';
 import 'package:toonflix/widgets/card.dart';
+import 'package:toonflix/widgets/card2.dart';
 
 void main() {
   runApp(const App());

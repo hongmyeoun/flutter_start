@@ -13,6 +13,7 @@ class Counter extends StatefulWidget {
 
 class _CounterState extends State<Counter> {
   int counter = 0;
+  List<int> numbers = [];
   
   void onClicked() {
     // State가 변경되는 점이 있다고 알려주는 함수(refresh?)
@@ -20,6 +21,7 @@ class _CounterState extends State<Counter> {
     // setState(){}가 호출되면 일단 UI를 다시 그린다고 생각하면 된다.
     setState(() {
       counter += 1;
+      numbers.add(numbers.length);
     });
   }
 
@@ -44,6 +46,13 @@ class _CounterState extends State<Counter> {
                   fontSize: 30,
                 ),
               ),
+              for (var i in numbers)
+                Text(
+                  '$i',
+                  style: const TextStyle(
+                    fontSize: 30,
+                  ),
+                ),
               IconButton(
                 onPressed: onClicked,
                 icon: const Icon(Icons.add_box_rounded),

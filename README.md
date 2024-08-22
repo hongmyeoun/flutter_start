@@ -1,6 +1,7 @@
 # toonflix
 
 A new Flutter project.
+Studying at Nomad.
 
 ## Getting Started
 

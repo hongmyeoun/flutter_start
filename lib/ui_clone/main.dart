@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,55 +12,107 @@ class UIClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown
+        },
+      ),
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Row(
-                children: [
-                  Icon(Icons.account_circle_rounded),
-                  Icon(Icons.add),
-                ],
-              ),
-              const Text('MONDAY 16'),
-              const SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('TODAY'),
-                    Text('·'),
-                    Text('17'),
-                    Text('18'),
-                    Text('19'),
-                    Text('20'),
+                    Icon(
+                      Icons.account_circle_rounded,
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                    Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 40,
+                    ),
                   ],
                 ),
-              ),
-              CustomBox(
-                schedule: 'DESING MEETING',
-                bgColor: Colors.yellow,
-                start: '11.30',
-                end: '12.20',
-                member: const ['ALEX', 'HELENA', 'NANA'],
-              ),
-              const SizedBox(height: 20),
-              CustomBox(
-                schedule: 'DAILY PROJECT',
-                bgColor: Colors.purple,
-                start: '12.35',
-                end: '14.10',
-                member: const ['ME', 'RECHARD', 'CIRY', '+4'],
-              ),
-              const SizedBox(height: 20),
-              CustomBox(
-                schedule: 'WEEKLY PLANNING',
-                bgColor: Colors.green,
-                start: '15.00',
-                end: '16.30',
-                member: const ['DEN', 'NANA', 'MARK'],
-              ),
-            ],
+                const SizedBox(height: 20),
+                const Text(
+                  'MONDAY 16',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: SizedBox(
+                    height: 60,
+                    child: Row(
+                      children: [
+                        const Text(
+                          'TODAY',
+                          style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const Text(
+                          '·',
+                          style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFFB22581),
+                          ),
+                        ),
+                        for (int i = 17; i <= 31; i++) ...[
+                          Text(
+                            '$i',
+                            style: TextStyle(
+                              fontSize: 45,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+                const CustomBox(
+                  schedule: 'DESING MEETING',
+                  bgColor: Color(0xFFFEF754),
+                  start: '11.30',
+                  end: '12.20',
+                  member: ['ALEX', 'HELENA', 'NANA'],
+                ),
+                const SizedBox(height: 20),
+                const CustomBox(
+                  schedule: 'DAILY PROJECT',
+                  bgColor: Color(0xFF9C6BCE),
+                  start: '12.35',
+                  end: '14.10',
+                  member: ['ME', 'RECHARD', 'CIRY', '+4'],
+                ),
+                const SizedBox(height: 20),
+                const CustomBox(
+                  schedule: 'WEEKLY PLANNING',
+                  bgColor: Color(0xFFBCEE4B),
+                  start: '15.00',
+                  end: '16.30',
+                  member: ['DEN', 'NANA', 'MARK'],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -67,11 +121,11 @@ class UIClone extends StatelessWidget {
 }
 
 class CustomBox extends StatelessWidget {
-  Color bgColor;
-  String start, end, schedule;
-  List<String> member;
+  final Color bgColor;
+  final String start, end, schedule;
+  final List<String> member;
 
-  CustomBox(
+  const CustomBox(
       {super.key,
       required this.schedule,
       required this.bgColor,
@@ -159,6 +213,9 @@ class CustomBox extends StatelessWidget {
                             name,
                             style: TextStyle(
                               fontSize: 20,
+                              fontWeight: name != 'ME'
+                                  ? FontWeight.normal
+                                  : FontWeight.bold,
                               color: name != 'ME'
                                   ? Colors.black.withOpacity(0.5)
                                   : Colors.black,

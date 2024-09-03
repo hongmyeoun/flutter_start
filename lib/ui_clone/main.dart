@@ -12,6 +12,7 @@ class UIClone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // 크롬에서 터치 스크롤이 가능하게 변경하는 메소드
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,
@@ -88,6 +89,7 @@ class UIClone extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 50),
                 const CustomBox(
                   schedule: 'DESING MEETING',
                   bgColor: Color(0xFFFEF754),

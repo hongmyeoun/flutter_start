@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/pomodoro/screens/code_challenge_screen.dart';
 import 'package:toonflix/pomodoro/screens/home_screen.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class Pomodoro extends StatelessWidget {
         ),
         cardColor: const Color(0xFFF4EDDB),
       ),
-      home: const HomeScreen(),
+      home: const CodeChallengeScreen(),
     );
   }
 }
